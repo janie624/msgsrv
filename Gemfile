@@ -36,6 +36,8 @@ end
 gem 'thin'
 
 # form
+gem 'nested_form'
+gem 'formtastic', "~> 2.1.1"
 gem 'simple_form'
 
 # pagination
