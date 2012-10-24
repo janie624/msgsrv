@@ -1,16 +1,16 @@
 #modal_message_show.modal.fade
   .modal-header
     %a.close{:'data-dismiss' => "modal"} ×
-    %h3 Message from #{message.sender.name}
+    %h4= message.subject
   .modal-body
     %dl.dl-horizontal
-      %dt= message.class.human_attribute_name(:subject)
+      %dt From
       %dd
-        %blockquote= message.subject
+        %blockquote= message.sender.name
       %dt Message
       %dd
         %blockquote= simple_format message.body
 
   .modal-footer
     = link_to 'Reply', [:new, :message], :id => "reply_on_message", :class => "btn btn-primary", :data => {:remote => true, :type => :script,:params => {:message => {:recipient_ids => message.sender.id.to_s, :subject => "Re: #{message.subject}"}}}
-    .btn{:data => {:dismiss => "modal"}} Close
+    = link_to 'Delete', message, :class => 'btn btn-danger message-delete', :method => :delete, :remote => true, :data => {:id => message.id}, :confirm => 'Are you sure to delete message?'

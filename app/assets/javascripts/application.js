@@ -1,9 +1,7 @@
 //= require jquery_ujs
 //= require jquery_ui
 //= require bootstrap
-//= require common
 //= require_tree ./plugins/
-
 
 !function ($, w) {
 
@@ -30,6 +28,10 @@
 
     $('.message-read').on('ajax:success', function(data) {
       _this._read(_this._getMessageById($(this).data('id')))
+    })
+
+    $('.message-mark-all-read').on('ajax:success', function(data) {
+      _this.update()
     })
 
     $('.message-sent').on('ajax:success', function(data) {

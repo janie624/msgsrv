@@ -16,10 +16,10 @@ Athletetrax::Application.routes.draw do
   resources :messages do
     collection do
       get :counters
+      get :mark_all_read
     end
   end
   resources :recipients, :only => [:index]
-  resources :users, :only => [:index]
 
   #routings error
   match '*a', :to => 'errors#routing_error'

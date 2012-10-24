@@ -15,10 +15,6 @@ class ApplicationController < ActionController::Base
     I18n.locale = I18n.default_locale
   end
 
-  def days_to_array(event)
-    eval("[#{event.days}]")
-  end
-
   def time2str(t)
     t.nil? ? '' : Time.parse(t.to_s).strftime("%I:%M %p")
   end

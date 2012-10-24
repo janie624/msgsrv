@@ -4,7 +4,7 @@ class RecipientsController < ApplicationController
 
   def index
     @recipients = []
-    users_scope = User.where('(users.first_name ILIKE ? OR users.last_name ILIKE ?)', "#{params[:q]}%", "#{params[:q]}%")
+    users_scope = User.where('(users.first_name ILIKE ? OR users.last_name ILIKE ?) AND id !=?', "#{params[:q]}%", "#{params[:q]}%", current_user.id)
     if params[:restrict]
     end
     @recipients += users_scope

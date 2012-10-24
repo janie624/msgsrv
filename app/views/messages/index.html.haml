@@ -1,16 +1,20 @@
 .page-header.clearfix
-  .pull-right
-    = link_to [:new, :message], :class => 'btn btn-primary btn-large', :remote => true, :data => {:type => :script} do
-      %i.icon-pencil.icon-white
-      New message
   %h2 Messages
+  .pull-right
+    = link_to [:new, :message], :remote => true, :data => {:type => :script} do
+      %i.icon-pencil
+      New message
+    = link_to [:mark_all_read, :messages], :remote => true, :data => {:type => :script}, :class => 'message-mark-all-read' do
+      %i.icon-check
+      Mark all as read
 
-%ul.nav.nav-tabs
-  %li.active= link_to "Inbox (#{unread_messages_counter})".html_safe, '#inbox_messages', :data => {:toggle => :tab}
-  %li= link_to "Sent (#{sent_messages_counter})".html_safe, '#sent_messages', :data => {:toggle => :tab}
+%div.tabbable.tabs-left
+  %ul.nav.nav-tabs
+    %li.active= link_to "Inbox (#{unread_messages_counter})".html_safe, '#inbox_messages', :data => {:toggle => :tab}
+    %li= link_to "Sent (#{sent_messages_counter})".html_safe, '#sent_messages', :data => {:toggle => :tab}
 
-.tab-content.show-overflow.message-table
-  #inbox_messages.tab-pane.fade.active.in
-    = render '/messages/inbox', :messages => @messages[:inbox]
-  #sent_messages.tab-pane.fade
-    = render '/messages/sent', :messages => @messages[:sent]
+  %div.tab-content
+    #inbox_messages.tab-pane.fade.active.in
+      = render '/messages/inbox', :messages => @messages[:inbox]
+    #sent_messages.tab-pane.fade
+      = render '/messages/sent', :messages => @messages[:sent]

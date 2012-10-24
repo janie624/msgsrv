@@ -2,22 +2,22 @@
   %table.table.table-condensed.table-hover
     %thead
       %tr
-        %th From
         %th Subject
-        %th Message
-        %th Recived at
+        %th From
+        %th Received at
         %th
     %tbody
       - messages.each do |message|
-        %tr{:class => ('info' if message.unread? current_user), :id => dom_id(message)}
-          %td= link_to message.sender.name, '#'
+        %tr{:class => ('warning' if message.unread? current_user), :id => dom_id(message)}
           %td=truncate message.subject, :length => 50
-          %td=truncate message.body, :length => 100
+          %td=message.sender.name
           %td=l message.created_at, :format => :short
           %td.actions
-            = link_to message, :class => 'btn btn-small btn-primary message-read', :remote => true, :data => {:type => :script, :id => message.id} do
+            = link_to message, :class => 'btn btn-small btn-info message-read', :remote => true, :data => {:type => :script, :id => message.id} do
               %i.icon-envelope.icon-white
+            = link_to [:new, :message], :id => "reply_on_message", :class => "btn btn-small btn-primary message-reply", :data => {:remote => true, :type => :script, :params => {:message => {:recipient_ids => message.sender.id.to_s, :subject => "Re: #{message.subject}"}}} do
+              %i.icon-pencil.icon-white
             = link_to message, :class => 'btn btn-small btn-danger message-delete', :method => :delete, :remote => true, :data => {:id => message.id}, :confirm => 'Are you sure to delete message?' do
-              %i.icon-remove.icon-white
+              %i.icon-trash.icon-white
 - else
   %h2.center There is no incoming messages yet

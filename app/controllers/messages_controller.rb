@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :build_message, :only => [:new, :create]
   before_filter :find_message, :only => [:show, :destroy]
+  before_filter :get_all_messages, :only => [:mark_all_read]
 
   respond_to :html, :js
 
@@ -38,6 +39,11 @@ class MessagesController < ApplicationController
   def destroy
     @message.destroy(current_user)
   end
+  
+  def mark_all_read
+    @messages.each {|m| m.read!(current_user)}
+    render :js, :text => ""
+  end
 
 private
 
@@ -47,6 +53,10 @@ private
 
   def build_message
     @message = Message.new(params[:message])
+  end
+  
+  def get_all_messages
+    @messages = Message.inbox(current_user)
   end
   
 end
