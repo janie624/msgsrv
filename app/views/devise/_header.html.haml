@@ -1,0 +1,11 @@
+﻿.navbar.navbar-fixed-top.navbar-inverse
+  #nav.navbar-inner
+    .container
+      %a.btn.btn-navbar{:data => {:toggle => "collapse", :target =>".nav-collapse"}}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      .nav-collapse
+        %ul.nav.pull-right
+          %li= link_to 'Sign In', new_user_session_path, :style => "font-size:16px"
+          %li= link_to 'Sign Up', new_user_registration_path, :style => "font-size:16px"

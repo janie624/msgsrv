@@ -1,0 +1,45 @@
+﻿<%= devise_error_messages! %>	
+<div class="container">
+  <div class = 'row'>
+    <div class = 'offset1 span5'>
+      <br/><br/>
+      <%= image_tag("atlogo.png") %>
+    </div>
+    <div class = 'span1'>
+    </div>
+    <div class = 'span4'>
+      <fieldset>
+        <legend>Sign Up</legend>
+      </fieldset>
+      <% if(flash[:alert]) %>
+        <p class="alert">
+          <%= flash[:alert]; %>
+        </p>
+      <% end %>
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, :class => 'text' %>
+        
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, :class => 'text' %>
+      
+        <%= f.label :email %>
+        <%= f.email_field :email, :class => 'text', :class => "width: 280px" %>
+        
+        <%= f.label :password %>
+        <%= f.password_field :password , :class => 'text' %>
+        
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation , :class => 'text' %>
+
+        <% if devise_mapping.rememberable? -%>
+          <%= f.label :remember_me %><%= f.check_box :remember_me %> 
+        <% end -%>
+        </br></br>
+        <p>
+          <%= f.submit "Sign up", class: "btn btn-primary"  %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,285 @@
+@import 'mixins';
+@import 'plugins';
+@import 'bootstrap';
+@import 'bootstrap_responsive';
+@import 'entities';
+
+.inline-block {
+  @include inline-block;
+}
+
+section {
+  padding-top: 60px;
+}
+
+article {
+  margin-bottom: 40px;
+  padding: 0px 0px 40px;
+  border-bottom: 1px solid #DDD;
+}
+
+.right {
+  float:right;
+}
+
+.center {
+  text-align: center;
+}
+
+.centred {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p.sub {
+  color: #888;
+}
+
+.stripe {
+  padding: 40px 0px;
+}
+
+.stripe-top {
+  background-color: #EEE;
+  margin-top: -18px;
+}
+
+.stripe-color {
+  background-color: #EEE;
+}
+
+.page-heading h1 {
+  position: relative;
+  bottom: 20px;
+  line-height: 24px;
+}
+
+#btn-showcase td {
+  vertical-align: middle;
+}
+
+#nav .nav .active {
+  > a, > a:hover {
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    background-color: #000;
+  }
+}
+
+#nav {
+  background-image: none;
+  /*background-color: rgba(0, 0, 0, 0.75);*/
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+#nav .dropdown-menu a:hover {
+  color: white !important;
+}
+.dropdown-menu li > a:hover,
+.dropdown-menu .active > a,
+.dropdown-menu .active > a:hover {
+  background-color: #333;
+}
+
+#download-now h2 {
+  color: #FFF;
+}
+
+#cta {
+  background-color: #333;
+  background-image: image-url("darkdenim.png");
+}
+.feature-icon {
+  float: right;
+}
+
+#para-one {
+  background-position: 50% -200px;
+  padding-top: 100px !important;
+  margin-top: -80px !important;
+  background-attachment: fixed;
+}
+
+#para-one h1 {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color:  #000000;
+}
+
+#para-one h2 {
+  margin: 20px 0px;
+  color: #F20808;
+  font-weight: normal;
+}
+
+#para-three .thumbnail {
+  background-color: #FFF;
+}
+
+.feature blockquote {
+  border-left: none;
+  padding-left: 0px;
+}
+
+table {
+
+  tr {
+
+    td.actions {
+      min-width: 90px;
+      vertical-align: middle;
+
+      .btn {
+        visibility: hidden;
+      }
+    }
+
+    &:hover td.actions .btn {
+      visibility: visible;
+    }
+  }
+}
+
+.show-overflow {
+  overflow: visible;
+}
+
+.modal {
+
+  form {
+    margin-bottom: 0px;
+  }
+}
+
+// @media (max-width: 767px) {
+//   body {
+//     padding-left:0px !important;
+//     padding-right: 0px !important;
+//   }
+
+//   .container{
+//     padding-left: 20px !important;
+//     padding-right: 20px !important;
+//   }
+// }
+
+
+.consolidated_event.percents0 .fc-event-skin
+  {
+  background-color: #00F300;
+  border-color: #00F300;
+}
+
+.consolidated_event.percents10 .fc-event-skin
+  {
+  background-color: #00F300;
+  border-color: #00F300;
+}
+
+.consolidated_event.percents20 .fc-event-skin
+  {
+  background-color: #00F300;
+  border-color: #00F300;
+}
+
+.consolidated_event.percents30 .fc-event-skin
+  {
+  background-color: #D6F300;
+  border-color: #D6F300;
+}
+
+.consolidated_event.percents40 .fc-event-skin
+  {
+  background-color: #D6F300;
+  border-color: #D6F300;
+}
+
+.consolidated_event.percents50 .fc-event-skin
+  {
+  background-color: #F3B900;
+  border-color: #F3B900;
+}
+
+.consolidated_event.percents60 .fc-event-skin
+  {
+  background-color: #F3B900;
+  border-color: #F3B900;
+}
+
+.consolidated_event.percents70 .fc-event-skin
+  {
+  background-color: #F38800;
+  border-color: #F38800;
+}
+
+.consolidated_event.percents80 .fc-event-skin
+  {
+  background-color: #F38800;
+  border-color: #F38800;
+}
+
+.consolidated_event.percents90 .fc-event-skin
+  {
+  background-color: #F30000;
+  border-color: #F30000;
+}
+
+.consolidated_event.percents100 .fc-event-skin
+  {
+  background-color: #F30000;
+  border-color: #F30000;
+}
+
+input.datePicker {
+  width: 90px;
+}
+
+select.time-select {
+  width: 100px;
+}
+
+.inline_inputs {
+  .control-group {
+    float: left;
+  }
+}
+
+.inline_inputs:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+#modal_message {
+  .inline_inputs {
+    .control-label {
+      width: 50px;
+    }
+
+    .controls {
+      margin-left: 70px;
+    }
+
+  }
+
+}
+
+#notifications_counter {
+  width: 20px;
+  height: 20px;
+  display: block;
+  float: right;
+  margin: 0 5px;
+  text-align: center;
+  border:solid #A0A0A0  1px;
+}
+
+#notifications_counter.has_unread {
+  border:solid red 1px;
+  color: red;
+}

@@ -1,0 +1,13 @@
+= yield :js
+:javascript
+  $(function() {
+    Athletetrax.init({
+      messages: {
+        checker: #{user_signed_in?.to_json},
+        url: {
+          index: '#{url_for(:messages)}',
+          counters: '#{url_for([:counters, :messages])}'
+        }
+      }
+    });
+  });

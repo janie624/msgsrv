@@ -1,0 +1,12 @@
+= simple_form_for message, :remote => true, :html => {:class => 'form-horizontal', :data => {:type => :html, :target => '#modal_message'}} do |f|
+  = hidden_field_tag :recipients_json, @message.recipients.map(&:user).map{|u| {id: u.id, name: u.name}}.to_json
+  .modal-header
+    %a.close{:'data-dismiss' => "modal"} ×
+    %h3 New message
+  .modal-body
+    = f.input :recipient_ids, :as => :string, :label => f.object.class.human_attribute_name(:recipients)
+    = f.input :subject, :input_html => {:class => 'input-xlarge'}
+    = f.input :body, :input_html => {:rows => 6, :class => 'input-xlarge'}
+  .modal-footer
+    = f.button :submit, :class => 'btn btn-primary'
+    .btn{:data => {:dismiss => "modal"}} Close

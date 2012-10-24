@@ -1,0 +1,31 @@
+
+<div class="container">
+	<div class = 'row'>
+		<div class = 'span6'>
+			<div>
+				<%= image_tag("atlogo.png") %> 
+			</div>
+		</div>
+		<div class = 'span6'>
+			<h2>Forgot Your Password?</h2>
+			<% if resource.errors.any? %>
+				<div id="error_explanation">
+					<p class="alert">
+					<% resource.errors.full_messages.each do |msg| %>
+						<%= msg %><br/>
+					<% end %>
+					</p>
+				</div>
+			<% end %>
+			<% if(flash[:alert]) %>
+				<p class="alert"><%= flash[:alert]; %></p>
+			<% end %>
+			<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+				<%= f.label :email , :class => 'text' %>
+				<%= f.email_field :email , :class => 'text' %>
+				<%= f.submit "Send me reset password instructions" , class: "btn positive", :id => 'forgot-button'%>
+			<% end %>
+
+		</div>
+	</div>
+</div>

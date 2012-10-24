@@ -1,0 +1,5 @@
+$('body').append('<%= j render("/messages/message", :message => @message) %>')
+  .find('#modal_message_show').modal().on('hidden', function (e) { $(this).remove(); })
+  .find('#reply_on_message').on('ajax:beforeSend', function() {
+    $('#modal_message_show').modal('hide');
+  });

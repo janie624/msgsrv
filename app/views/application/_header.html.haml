@@ -1,0 +1,19 @@
+﻿- if user_signed_in?
+  #main_nav.navbar.navbar-inverse.navbar-fixed-top
+    .navbar-inner
+      .container
+        %button.btn.btn-navbar.collapsed{:type => 'button', :data => {:toggle => :collapse, :target => '.nav-collapse'}}
+          .icon-bar
+          .icon-bar
+          .icon-bar
+        .nav-collapse
+          %ul#main_menu.nav
+            %li{:class => ('active' if session['slideSelected'] == "Messages")}
+              = link_to "Messages (#{unread_messages_counter})".html_safe, :messages
+              
+          %ul#aside_main_menu.nav.pull-right
+            = link_to "Sign Out", destroy_user_session_path, :method => :delete
+            (#{current_user.name})
+
+  
+

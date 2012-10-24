@@ -1,0 +1,25 @@
+@mixin border-radius($radius: $default-border-radius) {
+  -moz-border-radius : $radius;
+  -webkit-border-radius : $radius;
+  -o-border-radius : $radius;
+  -ms-border-radius : $radius;
+  -khtml-border-radius : $radius;
+  border-radius: $radius;
+}
+
+@mixin transition($time) {
+  -webkit-transition: all $time ease-in-out;
+  -moz-transition: all $time ease-in-out;
+  -o-transition: all $time ease-in-out;
+  -webkit-transition: all $time ease-in-out;
+  transition: all $time ease-in-out;
+}
+
+@mixin inline-block {
+  *display: inline;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+}

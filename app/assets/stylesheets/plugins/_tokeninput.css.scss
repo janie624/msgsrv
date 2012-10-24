@@ -1,0 +1,138 @@
+ul.token-input-list-athletetrax {
+  @include border-radius(4px);
+  overflow: hidden;
+  height: auto !important;
+  height: 30px;
+  width: 280px;
+  cursor: text;
+  font-size: 12px;
+  font-family: Verdana;
+  min-height: 1px;
+  z-index: 999;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  list-style-type: none;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+  transition: border linear 0.2s, box-shadow linear 0.2s;
+
+  li input {
+    border: 0;
+    width: 100px;
+    padding: 2px 8px;
+    background-color: white;
+    margin: 2px 0;
+    -webkit-appearance: caret;
+  }
+
+  li.token-input-token-athletetrax {
+    @include border-radius(5px);
+    overflow: hidden;
+    height: auto !important;
+    height: 15px;
+    margin: 2px 3px;
+    padding: 1px 3px;
+    background-color: #eff2f7;
+    color: #000;
+    cursor: default;
+    border: 1px solid #ccd5e4;
+    font-size: 11px;
+    float: left;
+    white-space: nowrap;
+
+    p {
+      display: inline;
+      padding: 0;
+      margin: 0;
+    }
+
+    span {
+      color: #a6b3cf;
+      margin-left: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+
+  li.token-input-selected-token-athletetrax {
+    background-color: #5670a6;
+    border: 1px solid #3b5998;
+    color: #fff;
+  }
+
+  li.token-input-input-token-athletetrax {
+    float: left;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+}
+
+.control-group.error ul.token-input-list-athletetrax {
+  border-color: #b94a48;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+
+
+div.token-input-dropdown-athletetrax {
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.075);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.075);
+    position: absolute;
+    width: 280px;
+    background-color: #fff;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    cursor: default;
+    font-size: 11px;
+    font-family: Verdana;
+    z-index: 2000;
+    margin-top: -3px;
+
+  p {
+    margin: 0;
+    padding: 5px;
+    font-weight: bold;
+    color: #777;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      background-color: #fff;
+      padding: 3px;
+      margin: 0;
+      list-style-type: none;
+
+      &.token-input-dropdown-item-athletetrax {
+        background-color: #fff;
+      }
+
+      &.token-input-dropdown-item2-athletetrax {
+        background-color: #fff;
+      }
+
+      em {
+        font-weight: bold;
+        font-style: normal;
+      }
+
+      &.token-input-selected-dropdown-item-athletetrax {
+        background-color: #3b5998;
+        color: #fff;
+      }
+    }
+  }
+}
