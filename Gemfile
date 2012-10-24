@@ -44,8 +44,6 @@ gem 'kaminari'
 # athuntication
 gem 'devise'
 
-gem 'mime-types'
-
 gem 'rb-readline'
 
 # Fake data generation
