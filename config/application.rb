@@ -47,8 +47,5 @@ module Athletetrax
 
     # Heroku requires this to be false
     config.assets.initialize_on_precompile = false
-
-    config.assets.precompile += ['active_admin.css', 'active_admin/print.css', 'active_admin.js']
-
   end
 end
