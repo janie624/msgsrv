@@ -5,7 +5,8 @@ class MessagesController < ApplicationController
   before_filter :build_message, :only => [:new, :create]
   before_filter :find_message, :only => [:show, :destroy]
   before_filter :get_all_messages, :only => [:mark_all_read]
-
+  before_filter :get_selected_messages, :only => [:mark_selected_read, :delete_selected]
+  
   respond_to :html, :js
 
   def index
@@ -45,6 +46,16 @@ class MessagesController < ApplicationController
     render :js, :text => ""
   end
 
+  def mark_selected_read
+    @messages.each {|m| m.read!(current_user)}
+    render :js, :text => ""
+  end
+
+  def delete_selected
+    @messages.each {|m| m.destroy(current_user)}
+    render :js, :text => ""
+  end
+  
 private
 
   def find_message
@@ -57,6 +68,10 @@ private
   
   def get_all_messages
     @messages = Message.inbox(current_user)
+  end
+  
+  def get_selected_messages
+    @messages = params[:message] ? Message.where({:message_recipients => {:user_id => current_user.id}}).where("message_recipients.message_id in (#{params[:message].keys.join(',')})") : []
   end
   
 end

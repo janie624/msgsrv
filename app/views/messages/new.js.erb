@@ -8,9 +8,20 @@ var messageFormRecipientsFieldInit = function(form) {
   });
 };
 
-var newMessageFormDialog = $('body').append('<%= j render("/messages/modal", :message => @message) %>').find('#modal_message').modal().on('hidden', function (e) { $(this).remove(); });
+var newMessageFormDialog = $('body').append('<%= j render("/messages/modal", :message => @message) %>').find('#modal_message').modal({backdrop: 'static'}).on('hidden', function (e) { $(this).remove(); });
 
 messageFormRecipientsFieldInit(newMessageFormDialog.find('form'));
 newMessageFormDialog.on('ajax:success', function() {
   messageFormRecipientsFieldInit($(this).find('form'));
+});
+
+newMessageFormDialog.on('dismiss', function() {
+  alert('dfsafa')
+  var r = confirm("Are you sure to close?");
+  if ( r == true) {
+    alert('yes');
+  }
+  else{
+    alert('no');
+  }
 });

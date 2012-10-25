@@ -33,10 +33,23 @@
     $('.message-mark-all-read').on('ajax:success', function(data) {
       _this.update()
     })
+    
+    $('.message-mark-selected-read').on('click', function() {
+      var url = '/messages/mark_selected_read?' + $('input:checkbox').serialize()
+      $.get(url, {}, function(data) { _this.update() })
+    })
+    
+    $('.message-delete-selected').on('click', function() {
+      var r = confirm("Are you sure to delete selected messages?");
+      if ( r == true) {
+        var url = '/messages/delete_selected?' + $('input:checkbox').serialize()
+        $.get(url, {}, function(data) { _this.update() })
+      }
+    })
 
     $('.message-sent').on('ajax:success', function(data) {
       _this.update()
-    })
+    })  
 
     if (_this.options.checker)
       _this._checker()

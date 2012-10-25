@@ -5,13 +5,19 @@
       %i.icon-pencil
       New message
     = link_to [:mark_all_read, :messages], :remote => true, :data => {:type => :script}, :class => 'message-mark-all-read' do
-      %i.icon-check
+      %i.icon-th-list
       Mark all as read
+    = link_to [:mark_selected_read, :messages], :remote => true, :data => {:type => :script}, :class => 'message-mark-selected-read' do
+      %i.icon-check
+      Mark selected as read
+    = link_to [:delete_selected, :messages], :remote => true, :data => {:type => :script}, :class => 'message-delete-selected' do
+      %i.icon-trash
+      Delete selected
 
 %div.tabbable.tabs-left
   %ul.nav.nav-tabs
     %li.active= link_to "Inbox (#{unread_messages_counter})".html_safe, '#inbox_messages', :data => {:toggle => :tab}
-    %li= link_to "Sent (#{sent_messages_counter})".html_safe, '#sent_messages', :data => {:toggle => :tab}
+    %li= link_to "Sent", '#sent_messages', :data => {:toggle => :tab}
 
   %div.tab-content
     #inbox_messages.tab-pane.fade.active.in

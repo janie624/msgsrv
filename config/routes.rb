@@ -17,6 +17,8 @@ Athletetrax::Application.routes.draw do
     collection do
       get :counters
       get :mark_all_read
+      get :mark_selected_read
+      get :delete_selected      
     end
   end
   resources :recipients, :only => [:index]

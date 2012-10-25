@@ -2,17 +2,17 @@
   %table.table.table-condensed.table-hover
     %thead
       %tr
-        %th To
-        %th Subject
-        %th Message
-        %th Sent at
+        %th.span2 Subject
+        %th.span2 To
+        %th.span4 Message
+        %th.span2 Sent at
     %tbody
       - messages.each do |message|
         %tr{:id => dom_id(message), :class => 'message-item'}
-          %td.recipients
-            =raw message.recipients.map{|recipient| link_to recipient.user.name, '#' }.join(', ')
           %td.subject=truncate message.subject, :length => 50
-          %td.body=simple_format message.body
+          %td.recipients
+            =raw message.recipients.map{|recipient| recipient.user.name}.join(', ')
+          %td.body=simple_format message.body, :length => 100
           %td=l message.created_at, :format => :short
 - else
   %h2.center There is no sent messages yet
