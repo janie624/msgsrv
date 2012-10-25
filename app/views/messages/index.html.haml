@@ -16,11 +16,12 @@
 
 %div.tabbable.tabs-left
   %ul.nav.nav-tabs
-    %li.active= link_to "Inbox (#{unread_messages_counter})".html_safe, '#inbox_messages', :data => {:toggle => :tab}
-    %li= link_to "Sent", '#sent_messages', :data => {:toggle => :tab}
+    %li{:class => ('active' if session['slideSelected'] == "inbox")}= link_to "Inbox (#{unread_messages_counter})".html_safe, '#inbox_messages', :data => {:toggle => :tab}
+    %li{:class => ('active' if session['slideSelected'] == "sent")}= link_to "Sent", '#sent_messages', :data => {:toggle => :tab}
 
   %div.tab-content
-    #inbox_messages.tab-pane.fade.active.in
+    #inbox_messages.tab-pane.fade{:class => ('active in' if session['slideSelected'] == "inbox")}
       = render '/messages/inbox', :messages => @messages[:inbox]
-    #sent_messages.tab-pane.fade
+    #sent_messages.tab-pane.fade{:class => ('active in' if session['slideSelected'] == "sent")}
       = render '/messages/sent', :messages => @messages[:sent]
+

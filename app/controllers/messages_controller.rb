@@ -10,12 +10,12 @@ class MessagesController < ApplicationController
   respond_to :html, :js
 
   def index
-    session['slideSelected'] = "Messages"
+    session['slideSelected'] = params[:box] ? params[:box] : 'inbox' 
     @messages = {
-      :inbox => Message.inbox(current_user),
-      :sent => Message.sent(current_user)
+      :inbox => Message.inbox(current_user).page(params[:page]),
+      :sent => Message.sent(current_user).page(params[:page])
     }
-
+    
     case params[:box]
     when 'inbox'
       render :partial => '/messages/inbox', :locals => {:messages => @messages[:inbox]}

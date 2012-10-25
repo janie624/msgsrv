@@ -13,6 +13,8 @@
           %td.recipients
             =raw message.recipients.map{|recipient| recipient.user.name}.join(', ')
           %td.body=simple_format message.body, :length => 100
-          %td=l message.created_at, :format => :short
+          %td=l message.created_at, :format => :short  
 - else
   %h2.center There is no sent messages yet
+  
+=paginate @messages[:sent], :params => {:box => 'sent'}

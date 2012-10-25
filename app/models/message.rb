@@ -14,6 +14,8 @@ class Message < ActiveRecord::Base
   scope :unread, ->(user) { inbox(user).where('message_recipients.read_at IS NULL') }
   scope :selected, ->(user) { where({:message_recipients => {:user_id => user.id}}).where("message_recipients.message_id in (#{params[:message].keys.join(',')})") }
 
+  paginates_per 6
+
   def read!(user)
     recipients.find_by_user_id(user.id).update_attribute(:read_at, DateTime.now)
   end
