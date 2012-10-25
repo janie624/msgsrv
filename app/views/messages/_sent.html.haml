@@ -15,6 +15,6 @@
           %td.body=simple_format message.body, :length => 100
           %td=l message.created_at, :format => :short  
 - else
-  %h2.center There is no sent messages yet
+  %h2.center There is no sent messages.
   
-=paginate @messages[:sent], :params => {:box => 'sent'}
+=paginate @messages[:sent], :param_name => 'page_sent', :remote => true

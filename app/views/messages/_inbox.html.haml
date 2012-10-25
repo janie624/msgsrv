@@ -24,7 +24,7 @@
             = link_to message, :class => 'btn btn-small btn-danger message-delete', :method => :delete, :remote => true, :data => {:id => message.id}, :confirm => 'Are you sure to delete message?' do
               %i.icon-trash.icon-white 
 - else
-  %h2.center There is no incoming messages yet
+  %h2.center There is no incoming messages.
 
-=paginate @messages[:inbox], :params => {:box => 'inbox'}
+=paginate @messages[:inbox], :param_name => 'page_inbox', :remote => true 
   

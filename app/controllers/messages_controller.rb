@@ -10,10 +10,9 @@ class MessagesController < ApplicationController
   respond_to :html, :js
 
   def index
-    session['slideSelected'] = params[:box] ? params[:box] : 'inbox' 
     @messages = {
-      :inbox => Message.inbox(current_user).page(params[:page]),
-      :sent => Message.sent(current_user).page(params[:page])
+      :inbox => Message.inbox(current_user).page(params[:page_inbox]),
+      :sent => Message.sent(current_user).page(params[:page_sent])
     }
     
     case params[:box]
