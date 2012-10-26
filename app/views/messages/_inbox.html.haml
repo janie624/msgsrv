@@ -12,9 +12,9 @@
       - messages.each do |message|
         %tr{:class => ('warning' if message.unread? current_user), :id => dom_id(message)}
           %td= check_box 'message', message.id
-          %td.clickable= truncate(message.subject, :length => 50)
-          %td.clickable= message.sender.name
-          %td.clickable= truncate(message.body, :length => 100)
+          %td= link_to truncate(message.subject, :length => 50), message, :class => 'message-read', :remote => true, :data => {:type => :script, :id => message.id}
+          %td= link_to message.sender.name, message, :class => 'message-read', :remote => true, :data => {:type => :script, :id => message.id}
+          %td= link_to truncate(message.body, :length => 100), message, :class => 'message-read', :remote => true, :data => {:type => :script, :id => message.id}
           %td=l message.created_at, :format => :short
           %td.actions
             = link_to message, :class => 'btn btn-small btn-info message-read', :remote => true, :data => {:type => :script, :id => message.id} do

@@ -57,9 +57,8 @@
     });
     
     $('tbody tr td.clickable').click(function(e) {
-      var url = '/messages/' + this.parent.id.replace(/message_/, '')
-      alert(url)
-      //$.get(url, {}, function(data) { _this.update() })
+      var url = '/messages/' + this.parentNode.id.replace(/message_/, '')
+      $.get(url, {}, function(data) { alert('fdsf'); _this.update(); })
     })
     
     $('.message-sent').on('ajax:success', function(data) {
