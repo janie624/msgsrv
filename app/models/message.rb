@@ -9,7 +9,7 @@ class Message < ActiveRecord::Base
   validates :recipients, :presence => true
 
   default_scope includes(:recipients).order('messages.created_at DESC')
-  scope :sent, ->(user){ where(:sender_id => user.id) }
+  scope :sent, ->(user){ where("sender_id = #{user.id} AND deleted_at IS NULL") }
   scope :inbox, ->(user){ where({:message_recipients => {:user_id => user.id}}).where('message_recipients.deleted_at IS NULL') }
   scope :unread, ->(user) { inbox(user).where('message_recipients.read_at IS NULL') }
 
@@ -31,6 +31,10 @@ class Message < ActiveRecord::Base
     recipients.find_by_user_id(user.id).update_attribute(:deleted_at, DateTime.now)
   end
 
+  def delete_sent(message)
+    message.update_attribute(:deleted_at, DateTime.now)
+  end
+  
   def recipient_ids=(string)
     string.split(',').map do |id|
       if id.starts_with?('group')

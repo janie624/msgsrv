@@ -1,8 +1,2 @@
 $('#inbox_messages.tab-pane.fade.active.in').html('<%= escape_javascript(render("/messages/inbox", :messages => @messages[:inbox])) %>');
 $('#sent_messages.tab-pane.fade').html('<%= escape_javascript(render("/messages/sent", :messages => @messages[:sent])) %>');
-$('.tabbable.tabs-left').tabs({
-  select: function(e, inbox_messages) {
-    alert('dgag');
-    alert($(inbox_messages).text());
-  }
-});?

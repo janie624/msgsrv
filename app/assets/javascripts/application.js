@@ -3,13 +3,6 @@
 //= require bootstrap
 //= require_tree ./plugins/
 
-$('.tabbable.tabs-left').tabs({
-  select: function(e, inbox_messages) {
-    alert('dgag');
-    alert($(inbox_messages).text());
-  }
-});?
-
 !function ($, w) {
 
   "use strict";
@@ -32,7 +25,7 @@ $('.tabbable.tabs-left').tabs({
     $('.message-delete').on('ajax:success', function(data) {
       _this._remove(_this._getMessageById($(this).data('id')))
     })
-
+ 
     $('.message-read').on('ajax:success', function(data) {
       _this._read(_this._getMessageById($(this).data('id')))
     })
@@ -47,13 +40,28 @@ $('.tabbable.tabs-left').tabs({
     })
     
     $('.message-delete-selected').on('click', function() {
-      var r = confirm("Are you sure to delete selected messages?");
+      var box = $('.tabbable.tabs-left').find('.active a').attr("href").replace(/#/, '').replace(/_messages/, '')
+      var r = confirm("Are you sure to delete selected messages?")
       if ( r == true) {
-        var url = '/messages/delete_selected?' + $('input:checkbox').serialize()
+        var url = '/messages/delete_selected?' + $('input:checkbox').serialize() + '&box=' + box
         $.get(url, {}, function(data) { _this.update() })
       }
     })
-
+    
+    $('li a').click(function() {
+      if ($(this).text() == 'Sent') {
+        $('.in-box').hide()
+      } else {
+        $('.in-box').show()
+      }
+    });
+    
+    $('tbody tr td.clickable').click(function(e) {
+      var url = '/messages/' + this.parent.id.replace(/message_/, '')
+      alert(url)
+      //$.get(url, {}, function(data) { _this.update() })
+    })
+    
     $('.message-sent').on('ajax:success', function(data) {
       _this.update()
     })  

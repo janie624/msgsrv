@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
 
   def index
     @messages = {
-      :inbox => Message.unread(current_user).page(params[:page_inbox]),
+      :inbox => Message.inbox(current_user).page(params[:page_inbox]),
       :sent => Message.sent(current_user).page(params[:page_sent])
     }
     
@@ -38,6 +38,7 @@ class MessagesController < ApplicationController
 
   def destroy
     @message.destroy(current_user)
+    render :js, :text => ""
   end
   
   def mark_all_read
@@ -51,7 +52,7 @@ class MessagesController < ApplicationController
   end
 
   def delete_selected
-    @messages.each {|m| m.destroy(current_user)}
+    (params[:box] == 'sent') ? @messages.each {|m| m.delete_sent(m)} : @messages.each {|m| m.destroy(current_user)}
     render :js, :text => ""
   end
   
@@ -70,7 +71,11 @@ private
   end
   
   def get_selected_messages
-    @messages = params[:message] ? Message.where({:message_recipients => {:user_id => current_user.id}}).where("message_recipients.message_id in (#{params[:message].keys.join(',')})") : []
+    if params[:box] == 'sent'
+      @messages = params[:message] ? Message.where("sender_id = #{current_user.id} AND id IN (#{params[:message].keys.join(',')})") : []
+    else
+      @messages = params[:message] ? Message.where({:message_recipients => {:user_id => current_user.id}}).where("message_recipients.message_id IN (#{params[:message].keys.join(',')})") : []
+    end
   end
   
 end

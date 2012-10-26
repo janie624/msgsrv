@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(:version => 20121026054600) do
     t.integer  "sender_id"
     t.text     "body"
     t.string   "subject"
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.integer  "parent_message_id"
-    t.integer  "is_deleted",        :limit => 2, :default => 0
+    t.datetime "deleted_at"
   end
 
   create_table "users", :force => true do |t|
