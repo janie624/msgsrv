@@ -4,12 +4,13 @@
     = link_to [:new, :message], :remote => true, :data => {:type => :script} do
       %i.icon-pencil
       New message
-    = link_to [:mark_all_read, :messages], :remote => true, :data => {:type => :script}, :class => 'message-mark-all-read' do
-      %i.icon-th-list
-      Mark all as read
-    = link_to [:mark_selected_read, :messages], :remote => true, :data => {:type => :script}, :class => 'message-mark-selected-read' do
-      %i.icon-check
-      Mark selected as read
+    %span.in-box
+      = link_to [:mark_all_read, :messages], :remote => true, :data => {:type => :script}, :class => 'message-mark-all-read' do
+        %i.icon-th-list
+        Mark all as read
+      = link_to [:mark_selected_read, :messages], :remote => true, :data => {:type => :script}, :class => 'message-mark-selected-read' do
+        %i.icon-check
+        Mark selected as read
     = link_to [:delete_selected, :messages], :remote => true, :data => {:type => :script}, :class => 'message-delete-selected' do
       %i.icon-trash
       Delete selected

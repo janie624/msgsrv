@@ -3,6 +3,13 @@
 //= require bootstrap
 //= require_tree ./plugins/
 
+$('.tabbable.tabs-left').tabs({
+  select: function(e, inbox_messages) {
+    alert('dgag');
+    alert($(inbox_messages).text());
+  }
+});?
+
 !function ($, w) {
 
   "use strict";

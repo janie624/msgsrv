@@ -12,7 +12,6 @@ class Message < ActiveRecord::Base
   scope :sent, ->(user){ where(:sender_id => user.id) }
   scope :inbox, ->(user){ where({:message_recipients => {:user_id => user.id}}).where('message_recipients.deleted_at IS NULL') }
   scope :unread, ->(user) { inbox(user).where('message_recipients.read_at IS NULL') }
-  scope :selected, ->(user) { where({:message_recipients => {:user_id => user.id}}).where("message_recipients.message_id in (#{params[:message].keys.join(',')})") }
 
   paginates_per 6
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120926105429) do
+ActiveRecord::Schema.define(:version => 20121026054600) do
 
   create_table "message_recipients", :force => true do |t|
     t.integer  "message_id"
@@ -26,8 +26,10 @@ ActiveRecord::Schema.define(:version => 20120926105429) do
     t.integer  "sender_id"
     t.text     "body"
     t.string   "subject"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+    t.integer  "parent_message_id"
+    t.integer  "is_deleted",        :limit => 2, :default => 0
   end
 
   create_table "users", :force => true do |t|

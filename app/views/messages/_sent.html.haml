@@ -2,6 +2,7 @@
   %table.table.table-condensed.table-hover
     %thead
       %tr
+        %th{ :style => 'width:20px;'}
         %th.span2 Subject
         %th.span2 To
         %th.span4 Message
@@ -9,6 +10,7 @@
     %tbody
       - messages.each do |message|
         %tr{:id => dom_id(message), :class => 'message-item'}
+          %td= check_box 'message', message.id
           %td.subject=truncate message.subject, :length => 50
           %td.recipients
             =raw message.recipients.map{|recipient| recipient.user.name}.join(', ')
