@@ -7,7 +7,7 @@
         %th.span2 From
         %th.span5 Message
         %th.span2 Received at
-        %th
+        %th.span2
     %tbody
       - messages.each do |message|
         %tr{:class => ('warning' if message.unread? current_user), :id => dom_id(message)}
@@ -26,5 +26,6 @@
 - else
   %h2.center There is no incoming messages.
 
-=paginate @messages[:inbox], :param_name => 'page_inbox', :remote => true 
+%div#inbox_pager
+  =paginate @messages[:inbox], :param_name => 'page_inbox', :params => {:box => ''}, :remote => true
   

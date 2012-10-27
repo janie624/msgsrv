@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
 
   def index
     @messages = {
-      :inbox => Message.inbox(current_user).page(params[:page_inbox]),
+      :inbox => Message.unread(current_user).page(params[:page_inbox]),
       :sent => Message.sent(current_user).page(params[:page_sent])
     }
     
@@ -38,7 +38,6 @@ class MessagesController < ApplicationController
 
   def destroy
     @message.destroy(current_user)
-    render :js, :text => ""
   end
   
   def mark_all_read

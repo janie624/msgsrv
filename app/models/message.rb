@@ -16,11 +16,13 @@ class Message < ActiveRecord::Base
   paginates_per 6
 
   def read!(user)
-    recipients.find_by_user_id(user.id).update_attribute(:read_at, DateTime.now)
+    recipient = recipients.find_by_user_id(user.id)
+    recipient.update_attribute(:read_at, DateTime.now) if recipient
   end
 
   def read?(user)
-    recipients.find_by_user_id(user.id).read_at?
+    recipient = recipients.find_by_user_id(user.id)
+    recipient.read_at? if recipient
   end
 
   def unread?(user)
@@ -28,7 +30,8 @@ class Message < ActiveRecord::Base
   end
 
   def destroy(user)
-    recipients.find_by_user_id(user.id).update_attribute(:deleted_at, DateTime.now)
+    recipient = recipients.find_by_user_id(user.id)
+    recipient.update_attribute(:deleted_at, DateTime.now) if recipient
   end
 
   def delete_sent(message)

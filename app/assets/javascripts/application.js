@@ -3,7 +3,6 @@
 //= require bootstrap
 //= require_tree ./plugins/
 
-
 !function ($, w) {
 
   "use strict";
@@ -23,21 +22,25 @@
       sent: $('#sent_messages')
     }
 
-    $('.message-delete').on('ajax:success', function(data) {
-      _this._remove(_this._getMessageById($(this).data('id')))
-    })
- 
-    $('.message-read').on('ajax:success', function(data) {
-      _this._read(_this._getMessageById($(this).data('id')))
-    })
+    $(document).on('ajax:complete', function() {
+      $('.message-delete').on('ajax:success', function(data) {
+        _this._remove(_this._getMessageById($(this).data('id')))
+      })
+      
+      $('.message-read').on('ajax:success', function(data) {
+        _this._read(_this._getMessageById($(this).data('id')))
+      })
 
-    $('.message-mark-all-read').on('ajax:success', function(data) {
+      $('.message-mark-all-read').on('ajax:success', function() {})
+      
+      $('.message-sent').on('ajax:success', function() {})
+
       _this.update()
     })
-    
+            
     $('.message-mark-selected-read').on('click', function() {
       var url = '/messages/mark_selected_read?' + $('input:checkbox').serialize()
-      $.get(url, {}, function(data) { _this.update() })
+      $.get(url, {}, function() { _this.update() })
     })
     
     $('.message-delete-selected').on('click', function() {
@@ -45,26 +48,22 @@
       var r = confirm("Are you sure to delete selected messages?")
       if ( r == true) {
         var url = '/messages/delete_selected?' + $('input:checkbox').serialize() + '&box=' + box
-        $.get(url, {}, function(data) { _this.update() })
+        $.get(url, {}, function() { _this.update() })
       }
     })
     
-    $('li a').click(function() {
+    $('tbody tr td.clickable').click(function(e) {
+      var url = '/messages/' + this.parentNode.id.replace(/message_/, '')
+      $.get(url, {}, function() { _this.update() })
+    })
+          
+    $('li a[data-toggle="tab"]').click(function() {
       if ($(this).text() == 'Sent') {
         $('.in-box').hide()
       } else {
         $('.in-box').show()
       }
     });
-    
-    $('tbody tr td.clickable').click(function(e) {
-      var url = '/messages/' + this.parentNode.id.replace(/message_/, '')
-      $.get(url, {}, function(data) { alert('fdsf'); _this.update(); })
-    })
-    
-    $('.message-sent').on('ajax:success', function(data) {
-      _this.update()
-    })  
 
     if (_this.options.checker)
       _this._checker()
@@ -75,15 +74,6 @@
     $.getJSON(_this.options.url.counters, function(data) {
       if (data)
         _this._setCounters(data)
-    })
-    alert(1);
-
-    $('.message-delete').on('ajax:success', function(data) {
-      _this._remove(_this._getMessageById($(this).data('id')))
-    })
-    
-    $('.message-read').on('ajax:success', function(data) {
-      _this._read(_this._getMessageById($(this).data('id')))
     })
   }
 
@@ -136,9 +126,10 @@
       _this.update()
     }, 5000)
   }
-
+  
   app.init = function(options) {
     app.messages = new Message(options.messages)
   }
-
+  
 }(window.jQuery, window)
+
