@@ -7,6 +7,7 @@ gem 'pg'
 
 # javascript, ui,
 gem 'haml-rails'
+gem 'jquery-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

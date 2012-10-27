@@ -3,11 +3,12 @@
 //= require bootstrap
 //= require_tree ./plugins/
 
+
 !function ($, w) {
 
   "use strict";
 
-  var app = w.Athletetrax = {}
+  var app = w.Message = {}
 
   var Message = function(options) {
     var _this = this
@@ -71,10 +72,18 @@
 
   Message.prototype.update = function() {
     var _this = this
-
     $.getJSON(_this.options.url.counters, function(data) {
       if (data)
         _this._setCounters(data)
+    })
+    alert(1);
+
+    $('.message-delete').on('ajax:success', function(data) {
+      _this._remove(_this._getMessageById($(this).data('id')))
+    })
+    
+    $('.message-read').on('ajax:success', function(data) {
+      _this._read(_this._getMessageById($(this).data('id')))
     })
   }
 
@@ -87,7 +96,6 @@
 
     $.each([{box: 'inbox', counter: 'unread'}, {box: 'sent', counter: 'sent'}], function() {
       var type = this
-
       if (currentCounters[type.counter] != counters[type.counter]) {
         if (_this.container[type.box].length)
           _this._updateBox(counters[type.counter], type.box, type.counter)

@@ -1,4 +1,4 @@
-This is the source code for Version 1.2 of the AthleteTrax application. 
+This is the source code for Version 1.2 of the Message application. 
 
 == Welcome to Rails
 

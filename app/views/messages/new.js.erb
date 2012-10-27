@@ -1,6 +1,6 @@
 var messageFormRecipientsFieldInit = function(form) {
   form.find('#message_recipient_ids').tokenInput("<%= recipients_url %>", {
-    theme: 'athletetrax',
+    theme: 'message',
     prePopulate: $.parseJSON(form.find('#recipients_json').val()),
     propertyToSearch: 'name',
     preventDuplicates: true,
@@ -13,15 +13,4 @@ var newMessageFormDialog = $('body').append('<%= j render("/messages/modal", :me
 messageFormRecipientsFieldInit(newMessageFormDialog.find('form'));
 newMessageFormDialog.on('ajax:success', function() {
   messageFormRecipientsFieldInit($(this).find('form'));
-});
-
-newMessageFormDialog.on('dismiss', function() {
-  alert('dfsafa')
-  var r = confirm("Are you sure to close?");
-  if ( r == true) {
-    alert('yes');
-  }
-  else{
-    alert('no');
-  }
 });
