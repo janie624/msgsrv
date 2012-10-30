@@ -7,6 +7,7 @@
     = f.input :recipient_ids, :as => :string, :label => f.object.class.human_attribute_name(:recipients)
     = f.input :subject, :input_html => {:class => 'input-xlarge'}
     = f.input :body, :input_html => {:rows => 6, :class => 'input-xlarge'}
+    = f.hidden_field :parent_message_id
   .modal-footer
     = f.button :submit, :class => 'btn btn-primary'
     .btn{:data => {:dismiss => "modal"}} Close

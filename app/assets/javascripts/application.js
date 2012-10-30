@@ -11,7 +11,8 @@
 
   var Message = function(options) {
     var _this = this
-
+    var selected_box = 'inbox'
+    
     _this.options = options
     _this.counters = {
       unread: $('.unread-messages-counter'),
@@ -44,27 +45,25 @@
     })
     
     $('.message-delete-selected').on('click', function() {
-      var box = $('.tabbable.tabs-left').find('.active a').attr("href").replace(/#/, '').replace(/_messages/, '')
-      var r = confirm("Are you sure to delete selected messages?")
-      if ( r == true) {
-        var url = '/messages/delete_selected?' + $('input:checkbox').serialize() + '&box=' + box
-        $.get(url, {}, function() { _this.update() })
+      var checked_messages = $('input:checkbox').serialize()
+      if ( checked_messages ) {
+        if ( confirm("Are you sure to delete selected messages?") == true) {
+          var url = '/messages/delete_selected?' + checked_messages + '&box=' + selected_box
+          $.get(url, {}, function() { _this.update() })
+        }
       }
     })
-    
-    $('tbody tr td.clickable').click(function(e) {
-      var url = '/messages/' + this.parentNode.id.replace(/message_/, '')
-      $.get(url, {}, function() { _this.update() })
-    })
           
-    $('li a[data-toggle="tab"]').click(function() {
+    $('li a[data-toggle="tab"]').click( function() {
       if ($(this).text() == 'Sent') {
+        selected_box = 'sent'
         $('.in-box').hide()
       } else {
+        selected_box = 'inbox'
         $('.in-box').show()
       }
     });
-
+    
     if (_this.options.checker)
       _this._checker()
   }
@@ -97,8 +96,10 @@
 
   Message.prototype._updateBox = function(count, box, counter) {
     var _this = this
+    var page_inbox = $('#page_inbox').val();
+    var page_sent = $('#page_sent').val();
 
-    $.get(_this.options.url.index, {box: box}, function(data) {
+    $.get(_this.options.url.index, {box: box, page_inbox: page_inbox, page_sent: page_sent}, function(data) {
       _this.container[box].html(data)
       _this.counters[counter].html(count)
     });
@@ -110,12 +111,10 @@
 
   Message.prototype._read = function(message) {
     message.removeClass('info')
-    this.update()
   }
 
   Message.prototype._remove = function(message) {
     message.remove()
-    this.update()
   }
 
   Message.prototype._checker = function() {

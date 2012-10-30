@@ -8,10 +8,10 @@
       = link_to [:mark_all_read, :messages], :remote => true, :data => {:type => :script}, :class => 'message-mark-all-read' do
         %i.icon-th-list
         Mark all as read
-      = link_to '', :class => 'message-mark-selected-read' do
+      = link_to '#', :class => 'message-mark-selected-read' do
         %i.icon-check
         Mark selected as read
-    = link_to '', :class => 'message-delete-selected' do
+    = link_to '#', :class => 'message-delete-selected' do
       %i.icon-trash
       Delete selected
 

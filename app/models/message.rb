@@ -1,6 +1,6 @@
 class Message < ActiveRecord::Base
   attr_accessor :recipient_names
-  attr_accessible :body, :subject, :recipient_ids
+  attr_accessible :body, :subject, :recipient_ids, :parent_message_id
   has_many :recipients, :dependent => :destroy
   belongs_to :sender, :class_name => 'User'
 

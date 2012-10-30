@@ -3,6 +3,17 @@
 @import 'bootstrap';
 @import 'bootstrap_responsive';
 
+a {
+  &.message-read {
+    color: #000000; 
+    &:hover {
+      color: #005580; 
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }     
+}
+
 .inline-block {
   @include inline-block;
 }
