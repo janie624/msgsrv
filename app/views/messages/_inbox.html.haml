@@ -9,7 +9,6 @@
         %th.span5 Message
         %th.span2 Received at
         %th.span2
-        %th page
     %tbody
       - messages.each do |message|
         %tr{:class => ('warning' if message.unread? current_user), :id => dom_id(message)}
@@ -25,7 +24,6 @@
               %i.icon-pencil.icon-white
             = link_to message, :class => 'btn btn-small btn-danger message-delete', :method => :delete, :remote => true, :data => {:id => message.id}, :confirm => 'Are you sure to delete message?' do
               %i.icon-trash.icon-white
-          %td
 - else
   %h2.center There is no incoming messages.
 
